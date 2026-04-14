@@ -1,3 +1,5 @@
+## Este arquivo treina o modelo, gera o gráfico do cotovelo (de 1 a 506) e salva tudo que os outros arquivos precisam.
+
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.cluster import KMeans
@@ -32,7 +34,7 @@ pickle.dump(normalizador_housing, open('normalizador_housing.pkl', 'wb'))
 dados_num_norm = normalizador_housing.fit_transform(dados_num)
 dados_num_norm_df = pd.DataFrame(dados_num_norm, columns=features_clustering) # Converter o array NumPy para DataFrame temporário só para imprimir bonito no terminal
 
-print("✓ Dados normalizados:")
+print("[OK] Dados normalizados:")
 print(dados_num_norm_df.head())
 
 # Hiperparametrizar antes do treinamento
@@ -78,7 +80,7 @@ for i in range(len(distorcoes)):
     distancias.append(numerador / denominador)
     
 numero_clusters_otimo = K[distancias.index(np.max(distancias))]
-print("\n✓ Número ótimo de clusters = ", numero_clusters_otimo)
+print("\n[OK] Número ótimo de clusters = ", numero_clusters_otimo)
 
 # Treinar e salvar o modelo de clusters
 cluster_HousingData = KMeans(
@@ -95,4 +97,4 @@ metadata = {
 }
 pickle.dump(metadata, open('housing_metadata.pkl', 'wb'))
 
-print("✓ Modelos, normalizador e metadados salvos com sucesso!")
+print("[OK] Modelos, normalizador e metadados salvos com sucesso!")
